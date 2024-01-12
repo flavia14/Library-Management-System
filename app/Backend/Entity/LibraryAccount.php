@@ -6,7 +6,7 @@ class LibraryAccount
 {
     private int $id;
     private User $user;
-    private LibraryMembership $membership;
+    private LibraryMembership $libraryMembership;
 
     public function getId(): int
     {
@@ -25,11 +25,11 @@ class LibraryAccount
 
     public function getMembership(): LibraryMembership
     {
-        return $this->membership;
+        return $this->libraryMembership;
     }
 
-    public function setMembership(LibraryMembership $membership): void
+    public function setMembership(LibraryMembership $libraryMembership): void
     {
-        $this->membership = $membership;
+        $this->libraryMembership = $libraryMembership;
     }
 }
