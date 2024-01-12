@@ -9,6 +9,7 @@ class Book
     private Author $author;
     private SubjectCategory $subjectCategory;
     private string $publicationDate;
+    private int $totalCopies;
 
     public function getId(): int
     {
@@ -59,6 +60,18 @@ class Book
     public function setPublicationDate(string $publicationDate): Book
     {
         $this->publicationDate = $publicationDate;
+
+        return $this;
+    }
+
+    public function getTotalCopies(): int
+    {
+        return $this->totalCopies;
+    }
+
+    public function setTotalCopies(int $totalCopies): Book
+    {
+        $this->totalCopies = $totalCopies;
 
         return $this;
     }
