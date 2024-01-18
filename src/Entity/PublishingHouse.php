@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
 class PublishingHouse
 {
     private int $id;
     private string $name;
-    private string $address;
+    private Address $address;
 
     public function getId(): int
     {
@@ -18,18 +20,22 @@ class PublishingHouse
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(string $name): PublishingHouse
     {
         $this->name = $name;
+
+        return $this;
     }
 
-    public function getAddress(): string
+    public function getAddress(): Address
     {
         return $this->address;
     }
 
-    public function setAddress(string $address): void
+    public function setAddress(Address $address): PublishingHouse
     {
         $this->address = $address;
+
+        return $this;
     }
 }

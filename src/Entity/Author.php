@@ -2,12 +2,16 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
+use DateTime;
+
 class Author
 {
     private int $id;
     private string $firstName;
     private string $lastName;
-    private string $birthDate;
+    private DateTime $birthDate;
 
     public function getId(): int
     {
@@ -19,9 +23,11 @@ class Author
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): void
+    public function setFirstName(string $firstName): Author
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     public function getLastName(): string
@@ -29,19 +35,23 @@ class Author
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): void
+    public function setLastName(string $lastName): Author
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
-    public function getBirthDate(): string
+    public function getBirthDate(): DateTime
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(string $birthDate): void
+    public function setBirthDate(DateTime $birthDate): Author
     {
         $this->birthDate = $birthDate;
+
+        return $this;
     }
 
     public function getFullName(): string

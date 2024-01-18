@@ -2,13 +2,17 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
+use DateTime;
+
 class Book
 {
     private int $id;
     private string $title;
     private Author $author;
     private SubjectCategory $subjectCategory;
-    private string $publicationDate;
+    private DateTime $publicationDate;
     private int $totalCopies;
 
     public function getId(): int
@@ -52,12 +56,12 @@ class Book
         return $this;
     }
 
-    public function getPublicationDate(): string
+    public function getPublicationDate(): DateTime
     {
         return $this->publicationDate;
     }
 
-    public function setPublicationDate(string $publicationDate): Book
+    public function setPublicationDate(DateTime $publicationDate): Book
     {
         $this->publicationDate = $publicationDate;
 
