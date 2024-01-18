@@ -8,8 +8,11 @@ use App\Entity\PublishingHouse;
 
 trait BookItemTrait
 {
-    public function createBookItem(Book $book, PublishingHouse $publishingHouse, int $rackNumber = 1): BookItem
-    {
+    public function createBookItem(
+        Book $book,
+        PublishingHouse $publishingHouse,
+        int $rackNumber = 1
+    ): BookItem {
         $bookItem = new BookItem();
 
         $bookItem->setBook($book)
