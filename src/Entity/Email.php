@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
 use Exception\InvalidEmailException;
 
 class Email

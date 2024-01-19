@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
+use DateTime;
 use Enum\BookEnum;
 use Exception\MaxBooksLimitReachedException;
 
