@@ -53,6 +53,11 @@ class LibraryMembership
     private BookLoanCollection $bookLoanCollection;
 
     /**
+     * @var User
+     */
+    private User $user;
+
+    /**
      * Get the ID of the library membership.
      *
      * @return int
