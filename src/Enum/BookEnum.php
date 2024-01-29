@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Enum;
+namespace App\Enum;
 
 class BookEnum
 {
-    public const int MAX_BOOKS_LIMIT = 5;
-    public const int MAX_DAYS_LIMIT = 10;
+    public const MAX_BOOKS_LIMIT = 5;
+    public const MAX_DAYS_LIMIT = 10;
 }
