@@ -1,0 +1,16 @@
+stages:
+  - quality-check
+
+quality-check:
+  image: php:8.1-cli-bullseye
+  stage: scan
+  before_script:
+    - apt-get update
+    - apt-get install -y git zip unzip
+  script:
+    - ./bin/quality.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"
+      allow_failure: false
+  needs:
+    - run-composer
