@@ -139,4 +139,29 @@ class User
 
         return $this;
     }
+
+    public function login(string $username, string $password): void
+    {
+
+    }
+
+    public function logout(): void
+    {
+
+    }
+
+    public function viewAccount(User $user): void
+    {
+
+    }
+
+    public function editAccount(User $user): void
+    {
+
+    }
+
+    public function register(): void
+    {
+
+    }
 }
