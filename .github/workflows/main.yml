@@ -1,16 +1,33 @@
 stages:
+  - run-composer
   - quality-check
+
+run-composer:
+  stage: run-composer
+  image: composer:latest
+  script:
+    - export PATH=$PATH:/var/www/vendor/bin
+    - composer install
+    - composer require --dev phpunit || true
+  artifacts:
+    paths:
+      - vendor/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"
 
 quality-check:
   image: php:8.1-cli-bullseye
   stage: quality-check
   before_script:
     - apt-get update
-    - apt-get install -y git zip unzip
   script:
-    - ./bin/quality.sh
+    - set -e
+    - vendor/bin/phpcs -d memory_limit=512M -s app
+    - PHP_CS_STATUS=$?
+    - vendor/bin/phpstan --memory-limit=-1 analyse app
+    - PHP_STAN_STATUS=$?
+    - if [ $PHP_CS_STATUS -ne 0 -o $PHP_STAN_STATUS -ne 0 ]; then exit 1; fi
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_REF_NAME == "main"
-      allow_failure: false
   needs:
     - run-composer
