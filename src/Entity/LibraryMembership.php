@@ -105,26 +105,21 @@ class LibraryMembership
 
     public function cancelMembership(User $user, LibraryMembership $libraryMembership): void
     {
-
     }
 
     public function isMembershipValid(LibraryMembership $libraryMembership): void
     {
-
     }
 
     public function extendMembership(LibraryMembership $libraryMembership, DateTime $newEndDate): void
     {
-
     }
 
     public function viewMembershipDetails(User $user): void
     {
-
     }
 
     public function issueLibraryCard(User $user): void
     {
-
     }
 }

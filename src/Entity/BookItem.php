@@ -57,26 +57,21 @@ class BookItem
 
     public function addBookItem(BookItem $bookItem): void
     {
-
     }
 
     public function updateBookItem(BookItem $bookItem): void
     {
-
     }
 
     public function deleteBookItem(BookItem $bookItem): void
     {
-
     }
 
     public function getBookItemById(int $id): void
     {
-
     }
 
     public function getAllBookItems(): void
     {
-
     }
 }

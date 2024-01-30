@@ -105,26 +105,21 @@ class BookLoan implements \Countable
 
     public function checkoutBook(User $user, BookItem $bookItem): void
     {
-
     }
 
     public function removeReservation(User $user, BookItem $bookItem): void
     {
-
     }
 
     public function reserveBook(User $user, BookItem $bookItem): void
     {
-
     }
 
     public function checkAvailability(BookItem $bookItem): void
     {
-
     }
 
     public function returnBook(User $user, BookItem $bookItem): void
     {
-
     }
 }
