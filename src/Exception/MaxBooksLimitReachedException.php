@@ -10,14 +10,12 @@ use Throwable;
 class MaxBooksLimitReachedException extends Exception
 {
     /**
-     * @param string $message
-     * @param int $code
      * @param Throwable|null $previous
      */
     public function __construct(
         string $message = 'Maximum books limit reached.',
         int $code = 0,
-        Throwable $previous = null
+        Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
     }
