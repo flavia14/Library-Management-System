@@ -62,7 +62,7 @@ jobs:
     - name: Run PHP CodeSniffer and PHPStan
       run: |
         set +e
-        vendor/bin/phpcs --standard=phpcs.xml --memory-limit=512M -s --severity=0 src
+        vendor/bin/phpcs --standard=phpcs.xml -d --memory-limit=512M -s --severity=0 src
         PHP_CS_STATUS=$?
         vendor/bin/phpstan analyse --memory-limit=-1 --level=0 src
         PHP_STAN_STATUS=$?
