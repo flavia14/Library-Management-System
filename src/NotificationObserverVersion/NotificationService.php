@@ -24,4 +24,3 @@ class NotificationService implements SubjectInterface
         }
     }
 }
-
