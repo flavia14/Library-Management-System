@@ -96,7 +96,7 @@ class LibraryMembership
 
     public function addBookLoan(BookLoan $bookLoan): void
     {
-        if (count($this->bookLoanCollection->getBookLoan()) >= $this->maximumBooksLimit) {
+        if (\count($this->bookLoanCollection->getBookLoan()) >= $this->maximumBooksLimit) {
             throw new MaxBooksLimitReachedException();
         }
 

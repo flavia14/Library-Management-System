@@ -24,7 +24,7 @@ class Email
 
     public function setAddress(string $address): void
     {
-        if (!filter_var($address, FILTER_VALIDATE_EMAIL)) {
+        if (!\filter_var($address, \FILTER_VALIDATE_EMAIL)) {
             throw new InvalidEmailException();
         }
 
