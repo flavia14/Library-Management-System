@@ -64,6 +64,6 @@ jobs:
         set +e
         vendor/bin/phpcs --standard=phpcs.xml -d --memory-limit=512M -s src
         PHP_CS_STATUS=$?
-        vendor/bin/phpstan analyse --memory-limit=-1 --level=-1 src
+        vendor/bin/phpstan analyse --memory-limit=-1 --level=9 src
         PHP_STAN_STATUS=$?
         if [ $PHP_CS_STATUS -ne 0 ] || [ $PHP_STAN_STATUS -ne 0 ]; then exit 1; fi
