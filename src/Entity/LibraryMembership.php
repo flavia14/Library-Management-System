@@ -22,7 +22,7 @@ class LibraryMembership
 
     private DateTime $endDate;
 
-    private BookLoanCollection $bookLoanCollection;
+    protected BookLoanCollection $bookLoanCollection;
 
     private User $user;
 
