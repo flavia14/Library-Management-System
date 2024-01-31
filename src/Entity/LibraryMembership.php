@@ -12,6 +12,8 @@ class LibraryMembership
 {
     protected int $id;
 
+    protected BookLoanCollection $bookLoanCollection;
+
     private int $maximumBooksLimit = BookEnum::MAX_BOOKS_LIMIT;
 
     private int $maximumDaysLimit = BookEnum::MAX_DAYS_LIMIT;
@@ -21,8 +23,6 @@ class LibraryMembership
     private DateTime $startDate;
 
     private DateTime $endDate;
-
-    protected BookLoanCollection $bookLoanCollection;
 
     private User $user;
 
@@ -89,11 +89,6 @@ class LibraryMembership
         return $this;
     }
 
-    protected function getBookLoanCollection(): BookLoanCollection
-    {
-        return $this->bookLoanCollection;
-    }
-
     public function addBookLoan(BookLoan $bookLoan): void
     {
         if (\count($this->bookLoanCollection->getBookLoan()) >= $this->maximumBooksLimit) {
@@ -121,5 +116,10 @@ class LibraryMembership
 
     public function issueLibraryCard(User $user): void
     {
+    }
+
+    protected function getBookLoanCollection(): BookLoanCollection
+    {
+        return $this->bookLoanCollection;
     }
 }
