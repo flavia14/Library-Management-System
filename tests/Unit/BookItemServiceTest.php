@@ -38,8 +38,6 @@ class BookItemServiceTest extends TestCase
 
         $response = $this->bookItem->addBookItem($bookItem);
 
-        $this->assertIsArray($response);
-        $this->assertArrayHasKey('success', $response);
-        $this->assertTrue($response['success']);
+        $this->assertTrue($response);
     }
 }
