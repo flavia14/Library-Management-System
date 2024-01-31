@@ -8,7 +8,7 @@ use DateTime;
 
 class Author
 {
-    private int $id;
+    protected int $id;
 
     private string $firstName;
 

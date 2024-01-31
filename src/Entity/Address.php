@@ -13,7 +13,7 @@ namespace App\Entity;
  */
 class Address
 {
-    private int $id;
+    protected int $id;
 
     private string $zipCode;
 

@@ -6,7 +6,7 @@ namespace App\Entity;
 
 class PublishingHouse
 {
-    private int $id;
+    protected int $id;
 
     private string $name;
 

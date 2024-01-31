@@ -6,7 +6,7 @@ namespace App\Entity;
 
 class User
 {
-    private int $id;
+    protected int $id;
 
     private string $role;
 

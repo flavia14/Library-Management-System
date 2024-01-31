@@ -10,7 +10,7 @@ use DateTime;
 
 class LibraryMembership
 {
-    private int $id;
+    protected int $id;
 
     private int $maximumBooksLimit = BookEnum::MAX_BOOKS_LIMIT;
 

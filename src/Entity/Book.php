@@ -8,7 +8,7 @@ use DateTime;
 
 class Book
 {
-    private int $id;
+    protected int $id;
 
     private string $title;
 

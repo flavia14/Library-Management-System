@@ -6,7 +6,7 @@ namespace App\Entity;
 
 class LibraryAccount
 {
-    private int $id;
+    protected int $id;
 
     private User $user;
 

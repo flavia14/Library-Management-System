@@ -8,7 +8,7 @@ use DateTime;
 
 class BookLoan implements \Countable
 {
-    private int $id;
+    protected int $id;
 
     private User $user;
 

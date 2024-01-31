@@ -6,7 +6,7 @@ namespace App\Entity;
 
 class BookItem
 {
-    private int $id;
+    protected int $id;
 
     private Book $book;
 

@@ -6,7 +6,7 @@ namespace App\Entity;
 
 class BookLoanCollection
 {
-    private int $id;
+    protected int $id;
 
     private BookLoan $bookLoan;
 
@@ -15,11 +15,6 @@ class BookLoanCollection
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
     }
 
     public function getBookLoan(): BookLoan
