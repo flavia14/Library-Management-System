@@ -89,7 +89,7 @@ class LibraryMembership
         return $this;
     }
 
-    public function getBookLoanCollection(): BookLoanCollection
+    protected function getBookLoanCollection(): BookLoanCollection
     {
         return $this->bookLoanCollection;
     }
