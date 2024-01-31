@@ -55,8 +55,9 @@ class BookItem
         return $this;
     }
 
-    public function addBookItem(BookItem $bookItem): void
+    public function addBookItem(BookItem $bookItem): array
     {
+        return ["success" => true];
     }
 
     public function updateBookItem(BookItem $bookItem): void
