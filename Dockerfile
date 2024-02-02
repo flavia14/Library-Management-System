@@ -1,6 +1,6 @@
 FROM php:8.3-apache
 
-RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install pdo_mysql
 
-COPY ./php/ /var/www/html/
+COPY ./ /var/www/html/
 
