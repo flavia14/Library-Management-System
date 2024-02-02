@@ -13,6 +13,8 @@ services:
       - '3308:3306'
     networks:
       - mynetwork
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   web:
     build:
@@ -40,3 +42,6 @@ services:
 
 networks:
   mynetwork:
+
+volumes:
+  mysql_data:
