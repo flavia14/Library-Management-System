@@ -1,4 +1,5 @@
 <?php
+
 $host = 'mysql';
 $port = '3306';
 $db = 'test';
@@ -28,4 +29,3 @@ if ($conn->query($sql) === TRUE) {
 
 // Close the database connection
 $conn->close();
-
