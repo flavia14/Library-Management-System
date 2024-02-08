@@ -6,5 +6,5 @@ namespace App\Notification;
 
 abstract class NotificationAdapter
 {
-    abstract function sendNotification(NotificationInterface $notification): void;
+    abstract public function sendNotification(NotificationInterface $notification): void;
 }

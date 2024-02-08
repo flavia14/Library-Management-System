@@ -6,5 +6,4 @@ namespace App\Notification;
 
 interface NotificationInterface
 {
-
 }
