@@ -6,7 +6,8 @@ namespace App\NotificationObserverVersion;
 
 class NotificationService implements SubjectInterface
 {
-    private array $observers;
+    /** @var array */
+    private array $observers = [];
 
     public function attach(SubjectObserverInterface $observer): void
     {
