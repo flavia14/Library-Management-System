@@ -19,7 +19,7 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: 8.1
+        php-version: 8.3
 
     - name: Install Composer dependencies
       run: |
@@ -44,7 +44,7 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: 8.1
+        php-version: 8.3
 
     - name: Install apt dependencies
       run: |
@@ -62,8 +62,37 @@ jobs:
     - name: Run PHP CodeSniffer and PHPStan
       run: |
         set +e
-        # vendor/bin/phpcs -d memory_limit=512M -s --severity=0 src
-        # PHP_CS_STATUS=$?
-        vendor/bin/phpstan --memory-limit=512M analyse --level=0 src
+        vendor/bin/phpcs --standard=phpcs.xml -d --memory-limit=512M -s src
+        PHP_CS_STATUS=$?
+        vendor/bin/phpstan analyse --memory-limit=-1 --level=9 src
         PHP_STAN_STATUS=$?
-        if [ $PHP_CS_STATUS -ne 0 -o $PHP_STAN_STATUS -ne 0 ]; then exit 1; fi
+        if [ $PHP_CS_STATUS -ne 0 ] || [ $PHP_STAN_STATUS -ne 0 ]; then exit 1; fi
+
+  run-tests:
+    runs-on: ubuntu-latest
+
+    needs: quality-check
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
+
+    - name: Restore Composer cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+
+    - name: Run PHPUnit tests
+      run: |
+        set +e
+        vendor/bin/phpunit
+        PHPUNIT_STATUS=$?
+        if [ $PHPUNIT_STATUS -ne 0 ]; then exit 1; fi

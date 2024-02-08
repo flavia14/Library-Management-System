@@ -2,6 +2,7 @@
 
 namespace App\Tests\Unit;
 
+use App\Entity\BookItem;
 use App\Service\BookItemService;
 use App\Tests\Traits\AddressTrait;
 use App\Tests\Traits\AuthorTrait;
@@ -19,11 +20,11 @@ class BookItemServiceTest extends TestCase
     use SubjectCategoryTrait;
     use PublishingHouseTrait;
     use AddressTrait;
-    protected BookItemService $bookItemService;
+    protected BookItem $bookItem;
 
     protected function setUp(): void
     {
-        $this->bookItemService = new BookItemService();
+        $this->bookItem = new BookItem();
     }
 
     public function testAddBookItem(): void
@@ -35,10 +36,8 @@ class BookItemServiceTest extends TestCase
         $publishingHouse = $this->createPublishingHouse($address);
         $bookItem = $this->createBookItem($book, $publishingHouse);
 
-        $response = $this->bookItemService->addBookItem($bookItem);
+        $response = $this->bookItem->addBookItem($bookItem);
 
-        $this->assertIsArray($response);
-        $this->assertArrayHasKey('success', $response);
-        $this->assertTrue($response['success']);
+        $this->assertTrue($response);
     }
 }
