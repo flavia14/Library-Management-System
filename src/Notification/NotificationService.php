@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notification;
 
 class NotificationService
 {
     public function __construct(
-        private NotificationAdapter $notificationAdapter
-    )
-    {
+        private NotificationAdapter $notificationAdapter,
+    ) {
     }
 
     public function sendNotification(NotificationInterface $notification): void
@@ -18,6 +19,5 @@ class NotificationService
     public function changeNotifier(NotificationAdapter $notifier): void
     {
         $this->notificationAdapter = $notifier;
-
     }
 }
