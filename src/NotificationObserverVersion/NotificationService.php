@@ -10,7 +10,10 @@ class NotificationService implements SubjectInterface
 
     public function attach(SubjectObserverInterface $observer): void
     {
-        $this->observers[] = $observer;
+        foreach ($this->observers as $item)
+        {
+            $item = $observer;
+        }
     }
 
     public function detach(SubjectObserverInterface $observer): void
