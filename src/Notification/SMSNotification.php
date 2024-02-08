@@ -6,7 +6,6 @@ namespace App\Notification;
 
 class SMSNotification extends NotificationAdapter
 {
-
     public function sendNotification(NotificationInterface $notification): void
     {
     }

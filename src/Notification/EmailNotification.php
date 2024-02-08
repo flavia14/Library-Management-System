@@ -6,7 +6,6 @@ namespace App\Notification;
 
 class EmailNotification extends NotificationAdapter
 {
-
     public function sendNotification(NotificationInterface $notification): void
     {
     }
