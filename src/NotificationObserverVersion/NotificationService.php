@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\NotificationObserverVersion;
 
-use App\Entity\SubjectCategory;
-
 class NotificationService implements SubjectInterface
 {
     /** @var array<SubjectObserverInterface> */
