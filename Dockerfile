@@ -1,6 +1,3 @@
-FROM php:8.3-apache
+FROM php:8.3.2-fpm
 
-RUN docker-php-ext-install pdo_mysql
-
-COPY ./ /var/www/html/
-
+RUN docker-php-ext-install pdo pdo_mysql
