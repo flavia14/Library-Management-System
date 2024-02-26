@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-    /** @phpcsSuppress MalevolentCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
     public $timestamps = false;
     public int $id;
     public string $name;
 
-    /** @phpcsSuppress MalevolentCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
     protected $table = 'test';
 }
