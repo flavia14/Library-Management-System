@@ -13,9 +13,6 @@ use Illuminate\Support\Collection;
 
 class AuthorService
 {
-    /**
-     * @throws AuthorNotFoundException
-     */
     public function getAllAuthors(): Collection
     {
         try {
@@ -25,11 +22,6 @@ class AuthorService
         }
     }
 
-    /**
-     * @param int $authorID
-     * @return Collection|null
-     * @throws AuthorNotFoundException
-     */
     public function getAuthorById(int $authorID): ?Collection
     {
         try {
@@ -44,12 +36,6 @@ class AuthorService
         }
     }
 
-    /**
-     * @param string $firstName
-     * @param string $lastName
-     * @return Author
-     * @throws AuthorCreationException
-     */
     public function createAuthor(string $firstName, string $lastName): Author
     {
         $author = new Author();
@@ -72,12 +58,6 @@ class AuthorService
         return $author;
     }
 
-    /**
-     * @param int $authorID
-     * @param array $data
-     * @return Author|null
-     * @throws AuthorUpdateException
-     */
     public function updateAuthorById(int $authorID, array $data): ?Author
     {
         $author = Author::query()->find($authorID);
@@ -95,10 +75,7 @@ class AuthorService
         }
     }
 
-    /**
-     * @param int $authorID
-     * @throws AuthorDeletionException
-     */
+
     public function deleteAuthorById(int $authorID): void
     {
         $author = Author::query()->find($authorID);

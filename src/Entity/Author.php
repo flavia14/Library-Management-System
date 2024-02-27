@@ -9,21 +9,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    protected $fillable = ['firstName', 'lastName', 'birthDate'];
     public $timestamps = false;
 
     protected int $id;
 
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
+    protected $fillable = ['firstName', 'lastName', 'birthDate'];
+
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
+    protected $table = 'authors';
     private string $firstName;
 
     private string $lastName;
 
     private DateTime $birthDate;
-
-    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
-    protected $table = 'authors';
-
-
 
     public function getId(): int
     {
