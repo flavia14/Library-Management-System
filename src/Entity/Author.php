@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
     public $timestamps = false;
 
     protected int $id;

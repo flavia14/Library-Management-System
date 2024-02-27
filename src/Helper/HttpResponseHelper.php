@@ -8,12 +8,12 @@ class HttpResponseHelper
 {
     public static function sendBadRequestResponse(string $message): void
     {
-        http_response_code(400);
+        \http_response_code(400);
         echo $message;
     }
 
     public static function sendNotFoundResponse(): void
     {
-        http_response_code(404);
+        \http_response_code(404);
     }
 }

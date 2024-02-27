@@ -17,7 +17,7 @@ class AuthorService
     {
         try {
             return Author::all();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new AuthorNotFoundException('Error fetching authors.');
         }
     }
@@ -31,7 +31,7 @@ class AuthorService
             }
 
             return $author;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new AuthorNotFoundException('Error fetching author.');
         }
     }
@@ -51,7 +51,7 @@ class AuthorService
 
         try {
             $author->save();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new AuthorCreationException('Error creating author.');
         }
 
@@ -70,7 +70,7 @@ class AuthorService
             ]);
 
             return $author;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new AuthorUpdateException('Error updating author.');
         }
     }
@@ -83,7 +83,7 @@ class AuthorService
         if ($author) {
             try {
                 $author->delete();
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 throw new AuthorDeletionException('Error deleting author.');
             }
         }

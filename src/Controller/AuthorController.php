@@ -10,32 +10,26 @@ use App\Helper\HttpResponseHelper;
 
 class AuthorController
 {
-    private Router $router;
-    private AuthorService $authorService;
-
-    public function __construct(Router $router, AuthorService $authorService)
+    public function __construct(private Router $router, private AuthorService $authorService)
     {
-        $this->router = $router;
-        $this->authorService = $authorService;
-
-        $router->mount('/authors', function () {
-            $this->router->get('/', function () {
+        $this->router->mount('/authors', function () {
+            $this->router->get('/', function (): void {
                 $this->getAllAuthorsRoute();
             });
 
-            $this->router->get('/(\d+)', function (int $authorID) {
+            $this->router->get('/(\d+)', function (int $authorID): void {
                 $this->getAuthorById($authorID);
             });
 
-            $this->router->post('/', function () {
+            $this->router->post('/', function (): void {
                 $this->createAuthor();
             });
 
-            $this->router->put('/(\d+)', function (int $authorID) {
+            $this->router->put('/(\d+)', function (int $authorID): void {
                 $this->updateAuthorById($authorID);
             });
 
-            $this->router->delete('/(\d+)', function (int $authorID) {
+            $this->router->delete('/(\d+)', function (int $authorID): void {
                 $this->deleteAuthorById($authorID);
             });
         });
@@ -46,20 +40,20 @@ class AuthorController
         $firstName = $_POST['firstName'] ?? '';
         $lastName = $_POST['lastName'] ?? '';
 
-        if (empty($firstName) || empty($lastName)) {
+        if ($firstName === '' || $lastName === '') {
             HttpResponseHelper::sendBadRequestResponse('Set firstName and lastName');
             return;
         }
 
         $author = $this->authorService->createAuthor($firstName, $lastName);
 
-        echo $author->toJson(JSON_PRETTY_PRINT);
+        echo $author->toJson(\JSON_PRETTY_PRINT);
     }
 
     private function updateAuthorById(int $authorID): void
     {
-        $body = file_get_contents('php://input');
-        $data = json_decode($body, true);
+        $body = \file_get_contents('php://input');
+        $data = \json_decode($body, true);
 
         if (empty($data['firstName']) || empty($data['lastName'])) {
             HttpResponseHelper::sendBadRequestResponse('Set firstName and lastName');
@@ -73,14 +67,14 @@ class AuthorController
             return;
         }
 
-        echo $updatedAuthor->toJson(JSON_PRETTY_PRINT);
+        echo $updatedAuthor->toJson(\JSON_PRETTY_PRINT);
     }
 
     private function getAllAuthorsRoute(): void
     {
         $authors = $this->authorService->getAllAuthors();
 
-        echo $authors->toJson(JSON_PRETTY_PRINT);
+        echo $authors->toJson(\JSON_PRETTY_PRINT);
     }
 
     private function getAuthorById(int $authorID): void
@@ -92,7 +86,7 @@ class AuthorController
             return;
         }
 
-        echo $author->toJson(JSON_PRETTY_PRINT);
+        echo $author->toJson(\JSON_PRETTY_PRINT);
     }
 
     private function deleteAuthorById(int $authorID): void
