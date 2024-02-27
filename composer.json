@@ -14,7 +14,6 @@
     "vlucas/phpdotenv": "^5.6",
     "ext-mysqli": "*",
     "illuminate/database": "^9",
-    "doctrine/doctrine-migrations-bundle": "^3.0",
     "bramus/router": "^1.6"
   },
   "require-dev": {
