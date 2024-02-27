@@ -3,8 +3,6 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Capsule\Manager as ConnectionManager;
-use Illuminate\Database\Schema\Blueprint;
-use App\Entity\Test;
 
 $host = $_ENV['MARIADB_HOST'];
 $db = $_ENV['MARIADB_DATABASE'];
@@ -28,18 +26,4 @@ $connectionManager->bootEloquent();
 
 $schema = ConnectionManager::schema();
 
-if (!$schema->hasTable('test')) {
-    $schema->create('test', function (Blueprint $table): void {
-        $table->increments('id');
-        $table->string('name', 32);
-    });
-}
-
-if (!$schema->hasTable('authors')) {
-    $schema->create('authors', function (Blueprint $table): void {
-        $table->increments('id');
-        $table->string('firstName', 32);
-        $table->string('lastName', 32);
-        $table->date('birthDate');
-    });
-}
+include_once '../command/MigrationRunner.php';
