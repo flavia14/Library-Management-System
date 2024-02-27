@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\AuthorCreationException;
+use App\Exception\AuthorDeletionException;
+use App\Exception\AuthorNotFoundException;
+use App\Exception\AuthorUpdateException;
 use Bramus\Router\Router;
 use App\Service\AuthorService;
 use App\Helper\HttpResponseHelper;
 
 class AuthorController
 {
-    public function __construct(private Router $router, private AuthorService $authorService)
-    {
+    public function __construct(
+        private readonly Router $router,
+        private readonly AuthorService $authorService,
+    ) {
         $this->router->mount('/authors', function () {
             $this->router->get('/', function (): void {
                 $this->getAllAuthorsRoute();
@@ -35,6 +41,9 @@ class AuthorController
         });
     }
 
+    /**
+     * @throws AuthorCreationException
+     */
     private function createAuthor(): void
     {
         $firstName = $_POST['firstName'] ?? '';
@@ -50,6 +59,9 @@ class AuthorController
         echo $author->toJson(\JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @throws AuthorUpdateException
+     */
     private function updateAuthorById(int $authorID): void
     {
         $body = \file_get_contents('php://input');
@@ -70,6 +82,9 @@ class AuthorController
         echo $updatedAuthor->toJson(\JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @throws AuthorNotFoundException
+     */
     private function getAllAuthorsRoute(): void
     {
         $authors = $this->authorService->getAllAuthors();
@@ -77,6 +92,9 @@ class AuthorController
         echo $authors->toJson(\JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @throws AuthorNotFoundException
+     */
     private function getAuthorById(int $authorID): void
     {
         $author = $this->authorService->getAuthorById($authorID);
@@ -89,6 +107,9 @@ class AuthorController
         echo $author->toJson(\JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @throws AuthorDeletionException
+     */
     private function deleteAuthorById(int $authorID): void
     {
         $this->authorService->deleteAuthorById($authorID);
