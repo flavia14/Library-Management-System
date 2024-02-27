@@ -43,4 +43,3 @@ if (!$schema->hasTable('authors')) {
         $table->date('birthDate');
     });
 }
-
