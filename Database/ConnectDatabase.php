@@ -35,12 +35,12 @@ if (!$schema->hasTable('test')) {
     });
 }
 
-$test = new Test();
-$test->setAttribute('name', 'Flavia');
-$test->save();
-
-$entries = Test::all();
-
-foreach ($entries as $entry) {
-    echo $entry->getAttribute('id') . ' ' . $entry->getAttribute('name') . '<br>';
+if (!$schema->hasTable('authors')) {
+    $schema->create('authors', function (Blueprint $table): void {
+        $table->increments('id');
+        $table->string('firstName', 32);
+        $table->string('lastName', 32);
+        $table->date('birthDate');
+    });
 }
+

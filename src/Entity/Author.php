@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use DateTime;
+use Illuminate\Database\Eloquent\Model;
 
-class Author
+class Author extends Model
 {
+    protected $fillable = ['firstName', 'lastName', 'birthDate'];
+    public $timestamps = false;
+
     protected int $id;
 
     private string $firstName;
@@ -15,6 +19,11 @@ class Author
     private string $lastName;
 
     private DateTime $birthDate;
+
+    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
+    protected $table = 'authors';
+
+
 
     public function getId(): int
     {
