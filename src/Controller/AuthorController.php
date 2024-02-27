@@ -113,5 +113,7 @@ class AuthorController
     private function deleteAuthorById(int $authorID): void
     {
         $this->authorService->deleteAuthorById($authorID);
+
+        echo "Success deleted Author with id $authorID";
     }
 }
