@@ -5,24 +5,51 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Author;
+use App\Exception\AuthorCreationException;
+use App\Exception\AuthorDeletionException;
+use App\Exception\AuthorNotFoundException;
+use App\Exception\AuthorUpdateException;
 use Illuminate\Support\Collection;
 
 class AuthorService
 {
+    /**
+     * @throws AuthorNotFoundException
+     */
     public function getAllAuthors(): Collection
     {
-        return Author::all();
+        try {
+            return Author::all();
+        } catch (\Exception $e) {
+            throw new AuthorNotFoundException('Error fetching authors.');
+        }
     }
 
     /**
      * @param int $authorID
-     * @return Collection
+     * @return Collection|null
+     * @throws AuthorNotFoundException
      */
-    public function getAuthorById(int $authorID): Collection
+    public function getAuthorById(int $authorID): ?Collection
     {
-        return Author::query()->where('id', '=', $authorID)->getQuery()->get();
+        try {
+            $author = Author::query()->where('id', '=', $authorID)->get();
+            if ($author->isEmpty()) {
+                throw new AuthorNotFoundException('Author not found with ID ' . $authorID);
+            }
+
+            return $author;
+        } catch (\Exception $e) {
+            throw new AuthorNotFoundException('Error fetching author.');
+        }
     }
 
+    /**
+     * @param string $firstName
+     * @param string $lastName
+     * @return Author
+     * @throws AuthorCreationException
+     */
     public function createAuthor(string $firstName, string $lastName): Author
     {
         $author = new Author();
@@ -35,23 +62,25 @@ class AuthorService
             'lastName' => $lastName,
             'birthDate' => new \DateTime('now')
         ]);
+
         try {
             $author->save();
         } catch (\Exception $e) {
-            throw $e;
+            throw new AuthorCreationException('Error creating author.');
         }
 
         return $author;
     }
 
-
+    /**
+     * @param int $authorID
+     * @param array $data
+     * @return Author|null
+     * @throws AuthorUpdateException
+     */
     public function updateAuthorById(int $authorID, array $data): ?Author
     {
         $author = Author::query()->find($authorID);
-
-        if (!$author) {
-            return null;
-        }
 
         try {
             $author->update([
@@ -59,21 +88,27 @@ class AuthorService
                 'lastName' => $data['lastName'],
                 'birthDate' => new \DateTime('now'),
             ]);
-            return $author;
 
+            return $author;
         } catch (\Exception $e) {
-            return null;
+            throw new AuthorUpdateException('Error updating author.');
         }
     }
 
-
-
+    /**
+     * @param int $authorID
+     * @throws AuthorDeletionException
+     */
     public function deleteAuthorById(int $authorID): void
     {
         $author = Author::query()->find($authorID);
 
         if ($author) {
-            $author->delete();
+            try {
+                $author->delete();
+            } catch (\Exception $e) {
+                throw new AuthorDeletionException('Error deleting author.');
+            }
         }
     }
 }
