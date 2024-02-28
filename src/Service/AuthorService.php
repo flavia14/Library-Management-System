@@ -75,7 +75,6 @@ class AuthorService
         }
     }
 
-
     public function deleteAuthorById(int $authorID): void
     {
         $author = Author::query()->find($authorID);
