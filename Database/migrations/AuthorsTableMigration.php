@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+namespace migrations;
+
 use Illuminate\Database\Capsule\Manager as ConnectionManager;
 use Illuminate\Database\Schema\Blueprint;
+use MigrationRunnerInterface;
 
-class AuthorsTableMigration
+class AuthorsTableMigration implements MigrationRunnerInterface
 {
-    public static function run(): void
+    public function run(): void
     {
         $schema = ConnectionManager::schema();
 

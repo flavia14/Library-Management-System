@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Capsule\Manager as ConnectionManager;
+use Illuminate\Database\Schema\Blueprint;
 
 $host = $_ENV['MARIADB_HOST'];
 $db = $_ENV['MARIADB_DATABASE'];
@@ -26,4 +27,13 @@ $connectionManager->bootEloquent();
 
 $schema = ConnectionManager::schema();
 
-include_once '../command/MigrationRunner.php';
+if (!$schema->hasTable('migration_history')) {
+    $schema->create('migration_history', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('migration_name');
+        $table->dateTime('date');
+        $table->timestamps();
+    });
+}
+
+include_once 'MigrationRunner.php';
