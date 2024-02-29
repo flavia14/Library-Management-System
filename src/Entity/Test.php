@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-    /** @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingAnyTypeHint */
-    public $timestamps = false;
     public int $id;
     public string $name;
 

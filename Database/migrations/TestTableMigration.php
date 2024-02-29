@@ -18,6 +18,7 @@ class TestTableMigration implements MigrationRunnerInterface
             $schema->create('test', function (Blueprint $table): void {
                 $table->increments('id');
                 $table->string('name', 32);
+                $table->timestamps();
             });
         }
     }
