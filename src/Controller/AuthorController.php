@@ -16,8 +16,13 @@ class AuthorController
 {
     public function __construct(
         private readonly Router $router,
-        private readonly AuthorService $authorService,
+        private readonly AuthorService $authorService
     ) {
+        $this->configRoutes();
+    }
+
+    private function configRoutes(): void
+    {
         $this->router->mount('/authors', function () {
             $this->router->get('/', function (): void {
                 $this->getAllAuthorsRoute();
@@ -39,7 +44,7 @@ class AuthorController
                 $this->deleteAuthorById($authorID);
             });
         });
-       $this->router->run();
+        $this->router->run();
     }
 
     /**
