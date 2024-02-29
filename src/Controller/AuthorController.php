@@ -39,6 +39,7 @@ class AuthorController
                 $this->deleteAuthorById($authorID);
             });
         });
+       $this->router->run();
     }
 
     /**
