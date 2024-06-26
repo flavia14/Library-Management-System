@@ -8,3 +8,4 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 require '../Database/ConnectDatabase.php';
+require '../config/routes.php';
